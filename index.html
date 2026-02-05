@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daneel Command Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #8892b0;
+            font-size: 1.1rem;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .card-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .card-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.3s;
+        }
+        
+        .card-link:hover {
+            background: rgba(233, 69, 96, 0.3);
+        }
+        
+        .link-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .link-arrow {
+            color: #8892b0;
+        }
+        
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .quick-link {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .quick-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Daneel Command Center</h1>
+            <p class="subtitle">CrossFit Blaze AI Operations Dashboard</p>
+        </header>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>OpenClaw Active</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>Crabwalk Monitoring</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>Gmail Connected</span>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <!-- API Providers -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💳</span>
+                    <span class="card-title">API Credits & Usage</span>
+                </div>
+                <div class="card-links">
+                    <a href="https://console.anthropic.com/settings/billing" target="_blank" class="card-link">
+                        <span class="link-text">🟣 Anthropic (Claude)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://console.x.ai/team/billing" target="_blank" class="card-link">
+                        <span class="link-text">⚡ xAI (Grok)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://platform.openai.com/usage" target="_blank" class="card-link">
+                        <span class="link-text">🟢 OpenAI (GPT-4o)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://platform.moonshot.cn/console" target="_blank" class="card-link">
+                        <span class="link-text">🌙 Moonshot (Kimi)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://docs.z.ai/guides/overview/pricing" target="_blank" class="card-link">
+                        <span class="link-text">🔵 Z.AI (GLM-4.7)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Project Tracker -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <span class="card-title">Project Tracker</span>
+                </div>
+                <div class="card-links">
+                    <a href="kanban.html" class="card-link">
+                        <span class="link-text">📊 Kanban Board</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="http://100.104.101.21:3000/monitor" target="_blank" class="card-link">
+                        <span class="link-text">🦀 Crabwalk Monitor</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="http://100.104.101.21:3000" target="_blank" class="card-link">
+                        <span class="link-text">🏠 Crabwalk Home</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- CrossFit Blaze -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🏋️</span>
+                    <span class="card-title">CrossFit Blaze</span>
+                </div>
+                <div class="card-links">
+                    <a href="https://blaze.wodify.com" target="_blank" class="card-link">
+                        <span class="link-text">📋 Wodify Admin</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://mail.google.com/mail/u/?authuser=jason@crossfitblaze.com" target="_blank" class="card-link">
+                        <span class="link-text">📧 Blaze Gmail</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://www.instagram.com/crossfitblaze" target="_blank" class="card-link">
+                        <span class="link-text">📸 Instagram</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Daneel Tools -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🤖</span>
+                    <span class="card-title">Daneel's Tools</span>
+                </div>
+                <div class="card-links">
+                    <a href="https://mail.google.com/mail/u/?authuser=cosdaneelolivaw@gmail.com" target="_blank" class="card-link">
+                        <span class="link-text">📧 Daneel's Gmail</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="https://calendar.google.com" target="_blank" class="card-link">
+                        <span class="link-text">📅 Google Calendar</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quick-links">
+            <a href="kanban.html" class="quick-link">📋 Project Kanban</a>
+            <a href="http://100.104.101.21:3000/monitor" class="quick-link">🦀 Crabwalk</a>
+            <a href="https://console.anthropic.com/settings/billing" class="quick-link">💳 API Credits</a>
+            <a href="https://blaze.wodify.com" class="quick-link">🏋️ Wodify</a>
+        </div>
+        
+        <footer class="footer">
+            <p>🤖 Daneel Olivaw • CrossFit Blaze AI Assistant</p>
+            <p style="margin-top: 8px;">Mac mini • Tailscale: 100.104.101.21</p>
+        </footer>
+    </div>
+</body>
+</html>

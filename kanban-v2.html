@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Kanban v2 - Daneel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #e94560; margin-bottom: 20px; text-align: center; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #e94560; text-decoration: none; font-weight: 600; }
+        .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .column {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .column.in-progress .column-header { border-color: #00ff88; }
+        .column.waiting .column-header { border-color: #ffd700; }
+        .column.backlog .column-header { border-color: #4da6ff; }
+        .column.completed .column-header { border-color: #888; }
+        .column-count {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+        }
+        .card.high { border-left-color: #ff4757; }
+        .card.medium { border-left-color: #ffd700; }
+        .card.low { border-left-color: #4da6ff; }
+        .card-title { font-weight: 600; margin-bottom: 8px; font-size: 1rem; }
+        .card-desc { color: #8892b0; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
+        .card-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+        }
+        .loading { text-align: center; padding: 50px; color: #8892b0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back</a>
+        <h1>📋 Kanban Board v2 (Cache-Free)</h1>
+        <div id="kanbanBoard" class="loading"><p>Loading...</p></div>
+    </div>
+    
+    <script>
+        async function loadKanban() {
+            try {
+                // Add timestamp to prevent caching
+                const response = await fetch('/projects/KANBAN.md?' + Date.now());
+                const text = await response.text();
+                
+                const board = document.getElementById('kanbanBoard');
+                board.innerHTML = '<div class="board"></div>';
+                const boardEl = board.querySelector('.board');
+                
+                // Parse sections
+                const sections = [
+                    { title: '🟢 IN PROGRESS', class: 'in-progress', marker: '## 🟢 IN PROGRESS' },
+                    { title: '🟡 WAITING', class: 'waiting', marker: '## 🟡 WAITING' },
+                    { title: '🔵 BACKLOG', class: 'backlog', marker: '## 🔵 BACKLOG' },
+                    { title: '✅ COMPLETED', class: 'completed', marker: '## ✅ COMPLETED' }
+                ];
+                
+                sections.forEach(section => {
+                    // Find section start
+                    const startIdx = text.indexOf(section.marker);
+                    if (startIdx === -1) return;
+                    
+                    // Find next section or end
+                    let endIdx = text.indexOf('\n## ', startIdx + section.marker.length);
+                    if (endIdx === -1) endIdx = text.length;
+                    
+                    const sectionText = text.substring(startIdx, endIdx);
+                    
+                    // Split by ### to get tasks
+                    const parts = sectionText.split('\n###');
+                    const tasks = [];
+                    
+                    // Skip first part (section header)
+                    for (let i = 1; i < parts.length; i++) {
+                        const lines = parts[i].split('\n');
+                        const title = lines[0].replace(/^\\s+/, '').trim();
+                        const body = lines.slice(1).join('\n');
+                        
+                        if (title && title.length > 0 && !title.startsWith('#')) {
+                            const priority = body.match(/Priority:\*\*\s*([^\n]+)/)?.[1] || 'Medium';
+                            const description = body.match(/Description:\*\*\s*([^\n]+)/)?.[1] || '';
+                            
+                            tasks.push({ title, priority: priority.toLowerCase(), description });
+                        }
+                    }
+                    
+                    // Create column
+                    const column = document.createElement('div');
+                    column.className = `column ${section.class}`;
+                    
+                    let html = `
+                        <div class="column-header">
+                            <span>${section.title}</span>
+                            <span class="column-count">${tasks.length}</span>
+                        </div>
+                    `;
+                    
+                    tasks.forEach(task => {
+                        const priorityClass = task.priority.includes('high') ? 'high' : 
+                                            task.priority.includes('low') ? 'low' : 'medium';
+                        html += `
+                            <div class="card ${priorityClass}">
+                                <div class="card-title">${task.title}</div>
+                                ${task.description ? `<div class="card-desc">${task.description}</div>` : ''}
+                                <div class="card-meta">
+                                    <span class="tag">${task.priority}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    column.innerHTML = html;
+                    boardEl.appendChild(column);
+                });
+                
+            } catch (error) {
+                document.getElementById('kanbanBoard').innerHTML = 
+                    `<div class="loading"><p>Error: ${error.message}</p></div>`;
+            }
+        }
+        
+        loadKanban();
+    </script>
+</body>
+</html>

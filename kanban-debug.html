@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Debug - Daneel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        h1 { color: #e94560; margin-bottom: 20px; }
+        
+        .debug-section {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .debug-title {
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .debug-content {
+            color: #8892b0;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        
+        .error { color: #ff4757; }
+        .success { color: #00ff88; }
+        .warning { color: #ffd700; }
+        
+        .raw-preview {
+            max-height: 400px;
+            overflow: auto;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐛 Kanban Debug Mode</h1>
+        <p style="color: #8892b0; margin-bottom: 30px;">Diagnosing why Kanban isn't loading...</p>
+        
+        <div id="debugOutput"></div>
+    </div>
+    
+    <script>
+        const output = document.getElementById('debugOutput');
+        
+        function log(title, content, type = 'info') {
+            const section = document.createElement('div');
+            section.className = 'debug-section';
+            section.innerHTML = `
+                <div class="debug-title ${type}">${title}</div>
+                <div class="debug-content">${content}</div>
+            `;
+            output.appendChild(section);
+        }
+        
+        async function debugKanban() {
+            try {
+                log('Step 1: Fetching KANBAN.md', 'Attempting to load /projects/KANBAN.md...', 'info');
+                
+                const response = await fetch('/projects/KANBAN.md');
+                
+                if (!response.ok) {
+                    log('Error: Fetch Failed', `HTTP ${response.status}: ${response.statusText}`, 'error');
+                    return;
+                }
+                
+                log('Step 2: Fetch Success', `Status: ${response.status} OK\nContent-Type: ${response.headers.get('content-type')}`, 'success');
+                
+                const text = await response.text();
+                log('Step 3: File Loaded', `File size: ${text.length} characters\nFirst 200 chars:\n${text.substring(0, 200)}...`, 'success');
+                
+                // Test date extraction
+                const dateMatch = text.match(/\*\*Last Updated:\*\* (.+)/);
+                log('Step 4: Date Extraction', dateMatch ? `Found: ${dateMatch[1]}` : 'NOT FOUND', dateMatch ? 'success' : 'error');
+                
+                // Test section matching - account for blank lines
+                const sections = [
+                    { title: '🟢 IN PROGRESS', regex: /## 🟢 IN PROGRESS[^\n]*\n+([\s\S]*?)(?=\n##|$)/ },
+                    { title: '🟡 WAITING', regex: /## 🟡 WAITING[^\n]*\n+([\s\S]*?)(?=\n##|$)/ },
+                    { title: '🔵 BACKLOG', regex: /## 🔵 BACKLOG[^\n]*\n+([\s\S]*?)(?=\n##|$)/ },
+                    { title: '✅ COMPLETED', regex: /## ✅ COMPLETED[^\n]*\n+([\s\S]*?)(?=\n##|$)/ }
+                ];
+                
+                sections.forEach(section => {
+                    const match = text.match(section.regex);
+                    if (match) {
+                        const content = match[1];
+                        
+                        // Try split-based parsing
+                        const chunks = content.split(/\n###\s+/);
+                        const taskTitles = chunks.slice(1).map((chunk, i) => {
+                            const title = chunk.split('\n')[0].trim();
+                            const bodyLength = chunk.split('\n').slice(1).join('\n').length;
+                            return `  ${i+1}. ${title} (body: ${bodyLength} chars)`;
+                        });
+                        
+                        // Show first 800 chars of content
+                        const preview = content.substring(0, 800).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        
+                        log(
+                            `Section: ${section.title}`,
+                            `✅ FOUND
+Content length: ${content.length} chars
+
+SPLIT-BASED PARSING:
+Total chunks: ${chunks.length}
+Tasks (chunk 0 is header, skip it): ${chunks.length - 1}
+
+Task details:
+${taskTitles.join('\n')}
+
+--- Content Preview (first 800 chars) ---
+${preview}`,
+                            'success'
+                        );
+                    } else {
+                        log(`Section: ${section.title}`, '❌ NOT FOUND', 'error');
+                    }
+                });
+                
+                // Show raw file preview
+                log('Raw File Preview (first 1000 chars)', `<div class="raw-preview">${text.substring(0, 1000).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>`, 'info');
+                
+            } catch (error) {
+                log('Fatal Error', error.message + '\n\n' + error.stack, 'error');
+            }
+        }
+        
+        debugKanban();
+    </script>
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossFit for Seniors & Older Adults | CrossFit Blaze Naples</title>
+    <meta name="description" content="CrossFit isn't just for young athletes. Discover how adults 50+ are getting stronger, healthier, and more active at CrossFit Blaze in Naples, FL.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>');
+            background-size: 150px;
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .age-badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #e94560;
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: #d63550;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+        
+        /* Answer Section */
+        .answer-section {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .answer-section h2 {
+            font-size: 2.2em;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        
+        .answer-section .lead {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .answer-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 30px;
+            border-radius: 0 10px 10px 0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .answer-box h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .answer-box p {
+            color: #1b5e20;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .benefits h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #1a1a2e;
+            margin-bottom: 50px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* What to Expect */
+        .expect {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .expect h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #1a1a2e;
+            margin-bottom: 50px;
+        }
+        
+        .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .expect-item {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .expect-number {
+            background: #e94560;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+        
+        .expect-content h3 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .expect-content p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #1a1a2e;
+            margin-bottom: 50px;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            color: #e94560;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #1a1a2e;
+            margin-bottom: 50px;
+        }
+        
+        .testimonial-placeholder {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px dashed #ff9800;
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-placeholder h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-placeholder p {
+            color: #bf360c;
+            margin-bottom: 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+        
+        .cta-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .offer-details {
+            text-align: left;
+            margin: 25px 0;
+        }
+        
+        .offer-details li {
+            margin-bottom: 12px;
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .offer-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .benefits-grid,
+            .expect-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="age-badge">🎉 Adults 50+ Welcome</div>
+                <h1>It's Never Too Late to Get Stronger</h1>
+                <p class="subtitle">Think CrossFit is only for young athletes? Think again. Our members in their 50s, 60s, and 70s are proving that age is just a number—and fitness has no expiration date.</p>
+                <div class="hero-cta">
+                    <a href="https://blaze.wodify.com" class="btn btn-primary">Start Your 3 Free Classes</a>
+                    <a href="#faq" class="btn btn-secondary">Common Questions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Answer Section -->
+    <section class="answer-section">
+        <div class="container">
+            <h2>"Am I Too Old for CrossFit?"</h2>
+            <p class="lead">We hear this question all the time. Here's the truth:</p>
+            <div class="answer-box">
+                <h3>✅ No. You're not too old. You're just getting started.</h3>
+                <p>CrossFit isn't about being the fastest or lifting the heaviest. It's about moving well, staying strong, and building a body that serves you for life. Our coaches specialize in scaling every workout to your current fitness level—whether you're 25 or 75. The goal isn't to beat anyone; it's to become the healthiest, most capable version of <em>you</em>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Why Adults 50+ Love CrossFit Blaze</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Maintain Independence</h3>
+                    <p>Build the strength to carry groceries, play with grandkids, and live life on your terms. Functional fitness keeps you doing what you love.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🦴</div>
+                    <h3>Protect Your Bones</h3>
+                    <p>Weight-bearing exercise is proven to improve bone density and reduce osteoporosis risk. Stronger bones = fewer fractures and better balance.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Sharper Mind</h3>
+                    <p>Exercise boosts cognitive function and reduces dementia risk. Learning new movements keeps your brain as fit as your body.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Community Connection</h3>
+                    <p>Join a supportive group of like-minded adults. Our community is welcoming, encouraging, and full of people cheering for your success.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>More Energy</h3>
+                    <p>Regular exercise improves sleep quality, reduces fatigue, and gives you sustainable energy throughout the day—no caffeine required.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Personalized Approach</h3>
+                    <p>Every workout is scaled to your ability. Can't do a push-up? No problem. We'll find the right version for you and help you progress safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What to Expect -->
+    <section class="expect">
+        <div class="container">
+            <h2>Your First 3 Classes (Free!)</h2>
+            <div class="expect-grid">
+                <div class="expect-item">
+                    <div class="expect-number">1</div>
+                    <div class="expect-content">
+                        <h3>Personal Welcome</h3>
+                        <p>You'll meet with a coach who wants to understand your goals, any injuries or concerns, and your current fitness level. No judgment—just support.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-number">2</div>
+                    <div class="expect-content">
+                        <h3>Movement Assessment</h3>
+                        <p>We'll teach you the fundamental movements—squats, presses, pulls—at a pace that's comfortable for you. Proper form is our priority.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-number">3</div>
+                    <div class="expect-content">
+                        <h3>Scaled Workouts</h3>
+                        <p>Every exercise is adjusted to your current ability. You'll get a challenging but achievable workout that leaves you feeling accomplished, not defeated.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-number">4</div>
+                    <div class="expect-content">
+                        <h3>Coach Support</h3>
+                        <p>Our coaches are with you every step of the way. We explain everything, answer questions, and make sure you're moving safely and confidently.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-number">5</div>
+                    <div class="expect-content">
+                        <h3>Community Welcome</h3>
+                        <p>Meet other members who started exactly where you are. Our community is genuinely friendly—you'll feel at home from day one.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-number">6</div>
+                    <div class="expect-content">
+                        <h3>No Pressure</h3>
+                        <p>After your 3 free classes, you decide if CrossFit Blaze is right for you. We'll answer questions about membership, but there's never any pressure to join.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Is CrossFit safe for people over 60?</div>
+                    <div class="faq-answer">
+                        <p>Yes—when done correctly, CrossFit is incredibly safe for older adults. Our coaches are trained to scale every workout to your fitness level and any physical limitations you may have. We prioritize proper form and controlled movements over speed or intensity. Many of our members started in their 60s and 70s and have improved their strength, balance, and mobility significantly.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What if I have arthritis, bad knees, or other physical limitations?</div>
+                    <div class="faq-answer">
+                        <p>We work with members who have various physical conditions every day. Our coaches are experts at modifying movements to work around injuries or chronic conditions. For example, if you have knee issues, we can substitute box squats for full-depth squats, or swap high-impact movements for low-impact alternatives. We'll always find a way for you to participate safely.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do I need to be in shape before I start?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely not! CrossFit is how you get in shape. You don't need any prior fitness experience to start. Every workout is scalable, meaning we adjust the intensity, weights, and movements to match your current ability. Whether you've been sedentary for years or you're already active, we'll meet you where you are.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will I be the oldest person there?</div>
+                    <div class="faq-answer">
+                        <p>Not at all! We have a vibrant community of members in their 50s, 60s, and 70s. CrossFit Blaze is a welcoming environment where age diversity is celebrated. You'll find people at every stage of life working out together and supporting each other. Many of our senior members say the community is their favorite part.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What should I wear and bring?</div>
+                    <div class="faq-answer">
+                        <p>Wear comfortable workout clothes and athletic shoes with good support. Bring a water bottle and a small towel if you'd like. That's it! We provide all the equipment you'll need. For your first class, arrive 10 minutes early so we can give you a tour and answer any questions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How often should I come?</div>
+                    <div class="faq-answer">
+                        <p>We recommend starting with 2-3 classes per week to allow your body time to adapt and recover. Many of our senior members thrive on a 3-day-per-week schedule (Monday, Wednesday, Friday works great). As you get stronger and more comfortable, you can adjust your frequency based on your goals and how you feel.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What are your class times?</div>
+                    <div class="faq-answer">
+                        <p>We offer classes 6 days a week: Monday–Friday at 6 AM, 7 AM, 9 AM, 11:30 AM, 4:30 PM, and 5:30 PM; Saturday at 9 AM and 10 AM. Many of our older adults prefer the mid-morning (9 AM or 11:30 AM) or early afternoon classes, but you're welcome at any time that fits your schedule.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there a contract or long-term commitment?</div>
+                    <div class="faq-answer">
+                        <p>No long-term contracts required. We offer flexible membership options including month-to-month plans. We believe our results and community speak for themselves, so we don't lock you in. Your first 3 classes are completely free with no obligation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What if English isn't my first language?</div>
+                    <div class="faq-answer">
+                        <p>We welcome members from all backgrounds! Our coaches use clear, simple instructions and physical demonstrations to teach movements. If you or a family member have specific language needs, please let us know and we'll do our best to accommodate. Many movements are universal, and our supportive community helps everyone feel included.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I get started?</div>
+                    <div class="faq-answer">
+                        <p>Easy! Click the button below to claim your 3 free classes, or call/text us at (239) 289-9275. You can also email jason@crossfitblaze.com with any questions. We'll get you scheduled for your first class and make sure you feel welcome from the moment you walk in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Success Stories from Our Community</h2>
+            <div class="testimonial-placeholder">
+                <h3>📸 Member Stories Coming Soon</h3>
+                <p>We're collecting inspiring stories from our 50+ members who've transformed their health, strength, and confidence at CrossFit Blaze.</p>
+                <p><em>Want to be featured? Talk to Jason about sharing your journey!</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Your Best Years Are Ahead</h2>
+            <p>Every day you wait is a day you could be getting stronger, healthier, and more capable. The best time to start was yesterday. The second best time is today.</p>
+            
+            <div class="cta-box">
+                <h3>🎁 Start with 3 Free Classes</h3>
+                <ul class="offer-details">
+                    <li>No credit card required</li>
+                    <li>No long-term commitment</li>
+                    <li>Personal coach attention</li>
+                    <li>Workouts scaled to your level</li>
+                    <li>Meet our welcoming community</li>
+                </ul>
+                <a href="https://blaze.wodify.com" class="btn btn-primary" style="margin-top: 20px;">Claim Your Free Classes</a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 1em;">
+                📍 3355 Mercantile Ave, Naples, FL 34104<br>
+                📞 (239) 289-9275<br>
+                ✉️ jason@crossfitblaze.com
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 CrossFit Blaze Naples. All rights reserved.</p>
+            <p>CrossFit Blaze | 3355 Mercantile Ave, Naples, FL 34104<br>Questions? Call or text <a href="tel:239-289-9275">(239) 289-9275</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+# Progress Tracker
+
+*Lightweight session-to-session state. Updated at the end of every session.*
+
+---
+
+## Last Updated
+2026-02-03 7:30 PM EST
+
+## Currently In Progress
+- **Gmail automation** — Working but noisy cron output, streamlined today
+- **X/Twitter integration** — ✅ Configured and working (bird CLI auth fixed)
+- **Daily AI news** — ✅ Updated to include OpenClaw section
+- **Cron job cleanup** — ✅ Inbox cleanup cron streamlined (less error noise)
+- **Instagram content** — ✅ Generated 3 posts with images (Tue-Thu)
+
+## Recently Completed
+- ✅ X auth fixed (AUTH_TOKEN/CT0 in .zshrc)
+- ✅ OpenClaw update check cron added (4 AM daily)
+- ✅ AI news cron updated with OpenClaw section
+- ✅ Gmail cron streamlined for quieter operation
+- ✅ Instagram content: 3 posts + AI-generated images (Tue-Thu)
+- ✅ Caption bank updated (removed fake member stories)
+
+## Blocked / Waiting
+- **Gmail MCP** — Functional but cron was trying multiple approaches; now streamlined
+- **Lead follow-up automation** — Waiting for real leads to test end-to-end
+
+## Next Up (This Session or Next)
+1. Review KANBAN for any stale items
+2. Test streamlined Gmail cron on next run (~5 min)
+3. Continue monitoring specialist agents (Closer at 9 AM & 5 PM)
+
+## Notes for Next Session
+- X integration is live — can search/post
+- AI news at 6:15 AM includes OpenClaw updates from web + X
+- If Gmail cron still noisy after this fix, may need deeper debugging
+- **Email health check** runs at 9 AM daily (new cron added)
+- **Instagram image requirements:** Must show typical CrossFitters/coaches in athletic wear (no cultural/religious headwear unless specifically requested)
+
+## ⚡ REMINDER: Claude Code Best Practices (from Boris/Creator)
+Per https://x.com/carlvellotti/status/2018387672381915396 — apply these patterns:
+1. **Plan Mode First** — Always plan before building (already doing ✓)
+2. **Multiple Sessions** — Use parallel sessions for different tasks
+3. **CLAUDE.md** — Capture preferences/mistakes (we have AGENTS.md/SOUL.md ✓)
+4. **Custom Slash Commands** — Automate repeated tasks (we use cron/skills ✓)
+5. **Auto Bug Fixes** — Connect bug reports, say "fix" (try this pattern)
+6. **Prompt as Reviewer** — "Grill me on these changes" / "Implement the elegant solution"
+7. **Subagents** — Use liberally for hard problems (already doing ✓)
+8. **Voice Dictation** — fn+fn on Mac for 3x speed (optional)
+
+**Action:** When approaching complex tasks, ask me to use these patterns — especially #5 (auto-fix) and #6 (reviewer mode).

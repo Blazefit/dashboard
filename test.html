@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>Simple Test</title>
+    <style>
+        body { background: #1a1a2e; color: #fff; padding: 20px; font-family: monospace; }
+        pre { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px; white-space: pre-wrap; }
+        .success { color: #00ff88; }
+        .error { color: #ff4757; }
+    </style>
+</head>
+<body>
+    <h1>KANBAN.md Test</h1>
+    <div id="output"></div>
+    
+    <script>
+        const output = document.getElementById('output');
+        
+        async function test() {
+            try {
+                output.innerHTML = '<p>Fetching...</p>';
+                
+                const response = await fetch('/projects/KANBAN.md?' + Date.now());
+                const text = await response.text();
+                
+                let html = `<p class="success">✅ Loaded: ${text.length} characters</p>`;
+                
+                // Show first 500 chars
+                html += `<h3>First 500 chars:</h3><pre>${text.substring(0, 500)}</pre>`;
+                
+                // Count ### headers
+                const headers = text.match(/\n### /g);
+                html += `<p>Found ${headers ? headers.length : 0} task headers (### )</p>`;
+                
+                // Find IN PROGRESS section
+                const inProgressIdx = text.indexOf('## 🟢 IN PROGRESS');
+                html += `<p>IN PROGRESS section starts at: ${inProgressIdx}</p>`;
+                
+                if (inProgressIdx > -1) {
+                    const nextSection = text.indexOf('\n## ', inProgressIdx + 10);
+                    const sectionText = text.substring(inProgressIdx, nextSection > -1 ? nextSection : text.length);
+                    html += `<h3>IN PROGRESS section (${sectionText.length} chars):</h3>`;
+                    html += `<pre>${sectionText.substring(0, 800)}</pre>`;
+                    
+                    // Count tasks in this section
+                    const sectionHeaders = sectionText.match(/\n### /g);
+                    html += `<p class="success">Tasks in IN PROGRESS: ${sectionHeaders ? sectionHeaders.length : 0}</p>`;
+                }
+                
+                output.innerHTML = html;
+                
+            } catch (error) {
+                output.innerHTML = `<p class="error">ERROR: ${error.message}</p>`;
+            }
+        }
+        
+        test();
+    </script>
+</body>
+</html>

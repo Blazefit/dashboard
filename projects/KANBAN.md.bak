@@ -1,0 +1,65 @@
+
+## 📋 To Do
+
+### Daneel Improvements
+- [x] **Wodify API Research** — Test API connection, explore available endpoints
+  - *Status:* API key received, initial testing complete
+  - *Finding:* Most endpoints require Promote tier (upgrade pending, hearing back Monday)
+  - *Next steps:* Wait for Promote tier access, then build integration scripts
+- [ ] **Wodify Integration Scripts** — Build automation for leads, workouts, member data
+  - *Context:* Waiting for Promote tier upgrade
+  - *Next steps:* Create API client, build lead management script, automate WOD fetching
+- [x] **Tailscale SSH Setup** — Install Tailscale on Mac mini and work computer for remote access
+  - *Status:* ✅ COMPLETED — Jason confirmed this is done
+  - *Next steps:* None — ready for use
+
+### CrossFit Blaze
+- [x] **Welcome Templates** — Create welcoming email templates for new trials and members
+  - *Status:* ✅ COMPLETED — 2 templates created
+  - *Location:* `/templates/welcome-templates.md`
+  - *Templates:* Welcome to Blaze (new trial), Welcome to the Family (new member)
+- [ ] Create trial onboarding checklist in Wodify/notes doc
+- [ ] Design "Weekly Member Digest" email template + 4-week content calendar
+- [ ] **Old Member Re-Engagement Campaign** — Use templates to reach out to inactive members
+  - *Status:* 5 templates created, ready to execute
+  - *Next steps:* Export inactive member list from Wodify, segment and personalize, start outreach
+
+### Systems — Priority Order
+
+1. **🔴 GMAIL INTEGRATION** — Set up OAuth credentials, connect to dedicated Gmail account
+   - *Status:* ✅ COMPLETE — OAuth flow complete, tokens saved to `/Users/daneel/.config/moltbook/credentials.json`
+   - *Why first:* Enables all other integrations (Notion, automation), unlocks core systems
+   - *Resolution:* SSH device-level commands blocker bypassed via local execution
+
+2. **🟡 NOTION INTEGRATION** — Create Kanban board, migrate local KANBAN.md content
+   - *Status:* Blocked on Gmail
+   - *Next steps:* Set up API credentials, create database, migrate content
+
+3. **🟠 WODIFY INTEGRATION** — Explore API, analyze junk data, automation workflows
+   - *Status:* Waiting on Promote tier response from Wodify
+   - *Next steps:* Once tier confirmed, build integration scripts
+
+### ✅ Completed Systems
+- **🟢 TAILSCALE SSH SETUP** — Installed on Mac mini and work computer for remote access
+  - *Status:* ✅ COMPLETED — Confirmed by Jason
+  - *Next steps:* None — ready for use
+# Project Kanban Board
+*Last updated: 2026-02-01*
+
+## 📋 To Do
+
+### Daneel Improvements
+- [x] **Wodify API Research** — Test API connection, explore available endpoints
+  - *Status:* API key received, initial testing complete
+  - *Finding:* Most endpoints require Promote tier (upgrade pending, hearing back Monday)
+  - *Next steps:* Wait for Promote tier access, then build integration scripts
+- [ ] **Wodify Integration Scripts** — Build automation for leads, workouts, member data
+  - *Context:* Waiting for Promote tier upgrade
+  - *Next steps:* Create API client, build lead management script, automate WOD fetching
+- [x] **Tailscale SSH Setup** — Install Tailscale on Mac mini and work computer for remote access
+  - *Status:* ✅ COMPLETED — Jason confirmed this is done
+  - *Next steps:* None — ready for use
+
+### CrossFit Blaze
+- [x] **Welcome Templates** — Create welcoming email templates for new trials and members
+  - *Status:* ✅ COMPLETED — 2 templates created
