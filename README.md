@@ -11,12 +11,17 @@ Personal project dashboard and command center for CrossFit Blaze operations.
 | Page | Purpose |
 |------|---------|
 | `index.html` | Main Daneel Command Center - system overview, links, status |
-| `kanban.html` | Project Kanban board - track tasks and progress |
-| `kanban-debug.html` | Debug version of Kanban |
-| `kanban-v2.html` | Kanban v2 experimental |
+| `kanban.html` | Project Kanban board - legacy (moving to Notion) |
 | `seniors.html` | Senior CrossFit landing page (mirror) |
 | `seniors-qr-code.png` | QR code for seniors page |
 | `audio/` | Audio files for voice systems |
+
+## 🔗 Quick Links
+
+- **Main Dashboard:** https://blazefit.github.io/dashboard/
+- **Notion Workspace:** https://www.notion.so (primary project tracking)
+- **Senior Landing Page:** https://blazefit.github.io/seniors-crossfit-blaze/
+- **GitHub Repos:** https://github.com/blazefit
 
 ## 🚀 Deployment
 
